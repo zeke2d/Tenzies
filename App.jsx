@@ -2,6 +2,7 @@ import { useState } from "react"
 import Die from "./Die"
 
 export default function App() {
+    
     const [dice, setDice] = useState(generateAllNewDice())
     
     function generateAllNewDice() {
@@ -10,7 +11,10 @@ export default function App() {
             .map(() => Math.ceil(Math.random() * 6))
     }
     
-    /** map over dice here */
+    function rollDice() {
+        setDice(generateAllNewDice())
+    }
+    
     const diceElements = dice.map(num => <Die value={num} />)
     
     return (
@@ -18,6 +22,9 @@ export default function App() {
             <div className="dice-container">
                 {diceElements}
             </div>
+            
+            <button className="roll-dice" onClick={rollDice}>Roll</button>
+            
         </main>
     )
 }
